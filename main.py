@@ -66,6 +66,12 @@ def main():
                     email_list.append(email_domain)
             
         print(email_list)
+        print('Email_list length:', len(email_list))
+        print()
+
+        dist_email_list = [*set(email_list)]
+        print(dist_email_list)
+        print('dist_email_list length:', len(dist_email_list))
 
     except HttpError as error:
         # TODO(developer) - Handle errors from gmail API.
