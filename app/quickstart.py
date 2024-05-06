@@ -11,7 +11,7 @@ from pprint import pprint
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
 
-def get_message_id_threadid(creds):
+def get_messageid_threadid(creds):
   try:
     # Call the Gmail API
     service = build("gmail", "v1", credentials=creds)
@@ -90,7 +90,7 @@ def main():
     with open("token.json", "w") as token:
       token.write(creds.to_json())
 
-  test_ids = get_message_id_threadid(creds)
+  test_ids = get_messageid_threadid(creds)
   new_data = [format_data(id[0], creds) for id in test_ids]
   pprint(new_data[:5])
 

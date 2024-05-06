@@ -1,0 +1,21 @@
+{
+  'headerDate': 'Fri,
+    7 Jul 2023 15: 54: 30 +0000',
+  'id': '18931101dfc939d2',
+  'internalDate': '1688745270000',
+  'labelIds': 
+    [
+      'CATEGORY_PERSONAL', 
+      'INBOX'
+    ],
+  'sender': 'Shraddha from ProjectPro <shraddha@projectpro.io>',
+  'sizeEstimate': 50907,
+  'snippet': 'View this email in your browser Learn Data Migration Practices '
+             'from a Microsoft Data Engineer July 8th at 8: 00 am PST / 11: 00 '
+             'am EST / 8: 30 pm IST Hi, Thank you for registering for the '
+             'webinar. Here is',
+  'sourceEmail': 'zulkiflimikhail@gmail.com',
+  'subject': 'ProjectPro Webinar on Data Migration Practices - Zoom link '
+             'included!',
+  'threadId': '18931101dfc939d2'
+}
