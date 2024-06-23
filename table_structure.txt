@@ -1,0 +1,49 @@
+table_name: tdev04_gmail_raw
+
+field:
+
+id: Message DB's ID.
+INTEGER
+SERIAL
+PRIMARY KET
+NOT NULL
+
+id: The ID of the message to retrieve.
+STRING - VARCHAR(20)
+NULL
+
+internalDate: The internal message creation timestamp (epoch ms).
+BIGINT
+NULL
+
+labelIds: List of IDs of labels applied to the message.
+ARRAY - text[]
+NULL
+
+sourceEmail: Receiver's email.
+STRING - VARCHAR(255)
+NULL
+
+headerDate: Email's date as in Gmail.
+TIMESTAMPZ
+NULL
+
+subject: Message's title.
+STRING - VARCHAR(255)
+NULL
+
+sender: Sender's email.
+STRING - VARCHAR(255)
+NULL
+
+sizeEstimate: Estimated size in bytes of the message.
+INTEGER - INT
+NULL
+
+snippet: A short part of the message text.
+STRING - TEXT
+NULL
+
+threadId: The ID of the thread the message belongs to.
+STRING - VARCHAR(20)
+NULL

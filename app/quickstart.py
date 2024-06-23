@@ -91,8 +91,15 @@ def main():
       token.write(creds.to_json())
 
   test_ids = get_messageid_threadid(creds)
+  # To get total message
+  # print(len(test_ids))
+
+  # To test 5 message only
+  # test_ids_5 = test_ids[:5]
+  # print(test_ids_5)
+
   new_data = [format_data(id[0], creds) for id in test_ids]
-  pprint(new_data[:5])
+  pprint(new_data)
 
   # try:
   #   # Call the Gmail API

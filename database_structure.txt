@@ -1,0 +1,18 @@
+email_code:
+bulansebagaipengganticintamu@gmail.com > 01
+mikhailzulkifli7520@gmail.com > 02
+nikmikhailzulkifli@gmail.com > 03
+zulkiflimikhail@gmail.com > 04
+
+Namespace structure:
+1. Database
+2. Schema
+3. Table
+
+database: postgres - Dev db
+schema: sdev<email_code>_<gmail_initial> - sdev_zulkiflimikhail
+table: tdev<email_code>_<service>_<stage> - tdev_gmail_raw
+
+databse: db<email_code>_<gmail_initial> - db_zulkiflimikhail - Prod db
+schema: s<email_code>_<service> - s_gmail
+table: t<email_code>_<stage>

@@ -1,0 +1,9 @@
+GMAIL: zulkiflimikhail@gmail.com
+Date: 15/05/2024
+
+Gmail GUI count: Primary + Promotion + Social
+As of 15/05/2024: 233 + 118 + 11
+    Total: 362
+
+Gmail API Total Count (as of 15/05/2024):  363
+Difference: 363 - 362 = 1 (?)

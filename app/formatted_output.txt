@@ -1,6 +1,5 @@
 {
-  'headerDate': 'Fri,
-    7 Jul 2023 15: 54: 30 +0000',
+  'headerDate': 'Fri, 7 Jul 2023 15: 54: 30 +0000',
   'id': '18931101dfc939d2',
   'internalDate': '1688745270000',
   'labelIds': 
@@ -18,4 +17,34 @@
   'subject': 'ProjectPro Webinar on Data Migration Practices - Zoom link '
              'included!',
   'threadId': '18931101dfc939d2'
+},
+{
+  'headerDate': 'Mon, 13 May 2024 08:54:59 +0000',
+  'id': '18f71313110fa983',
+  'internalDate': '1715590499000',
+  'labelIds': ['UNREAD', 'CATEGORY_UPDATES', 'INBOX'],
+  'sender': '"Alexey Grigorev from DataTalks.Club" <alexey@datatalks.club>',
+  'sizeEstimate': 89231,
+  'snippet': 'We have other awesome events too! View this email in your '
+             'browser DataTalks.Club Weekly This is a weekly email newsletter '
+             'to keep you up-to-date about everything happening in our '
+             'community: our events',
+  'sourceEmail': 'zulkiflimikhail@gmail.com',
+  'subject': '📚 New MLOps Zoomcamp cohort | DataTalks.Club Weekly',
+  'threadId': '18f71313110fa983'
+},
+{
+  headerDate': 'Tue, 25 Jul 2023 09:24:37 +0000',
+  'id': '1898c5d64f3e34cd',
+  'internalDate': '1690277077000',
+  'labelIds': ['CATEGORY_SOCIAL', 'INBOX'],
+  'sender': 'Goodreads <no-reply@mail.goodreads.com>',
+  'sizeEstimate': 125086,
+  'snippet': 'Here are this month&#39;s new releases from authors on your '
+            'shelves and your favorite genres. Enjoy! Goodreads Fiction '
+            'Family Lore Tom Lake The Invisible Hour The Bee Sting Still Born '
+            'Nonfiction Thin',
+  'sourceEmail': 'zulkiflimikhail@gmail.com',
+  'subject': 'New August Releases',
+  'threadId': '1898c5d64f3e34cd'
 }
