@@ -2,11 +2,15 @@ table_name: tdev04_gmail_raw
 
 field:
 
-id: Message DB's ID.
+messageId: Message DB's ID.
 INTEGER
-SERIAL
-PRIMARY KET
+BIG SERIAL
+PRIMARY KEY
 NOT NULL
+
+date: Ingested date
+TIMESTAMPZ
+timestamp with time zone
 
 id: The ID of the message to retrieve.
 STRING - VARCHAR(20)

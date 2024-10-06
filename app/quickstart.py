@@ -1,6 +1,10 @@
+import re
+import psycopg2
 import os.path
 import json
 
+from psycopg2 import OperationalError
+from psycopg2.extras import execute_batch
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -57,7 +61,7 @@ def format_data(message_id, creds):
     data["sourceEmail"] = str([key["value"] for key in results["payload"]["headers"] if key.get("name") == "Delivered-To"][0])
     data["headerDate"] = str([key["value"] for key in results["payload"]["headers"] if key.get("name") == "Date"][0])
     data["subject"] = str([key["value"] for key in results["payload"]["headers"] if key.get("name") == "Subject"][0])
-    data["sender"] = str([key["value"] for key in results["payload"]["headers"] if key.get("name") == "From"][0])
+    data["sender"] = str([(match.group(1) if (match := re.search(r'<(.*?)>', key["value"])) else key["value"]) for key in results["payload"]["headers"] if key.get("name") == "From"][0])
     data["sizeEstimate"] = results["sizeEstimate"]
     data["snippet"] = results["snippet"]
     data["threadId"] = results["threadId"]
@@ -66,6 +70,64 @@ def format_data(message_id, creds):
   except HttpError as error:
     # TODO(developer) - Handle errors from gmail API.
     print(f"An error occurred: {error}")
+
+def check_connection():
+  try:
+    conn = psycopg2.connect(
+      database = "dev_g_db04", 
+      user = "superuser_dev", 
+      host = "192.168.68.53", 
+      password = "Capo36296", 
+      port = 5432
+      )
+    if conn.status == psycopg2.extensions.STATUS_READY:
+      print("Connection is successful!")
+
+    cur = conn.cursor()
+    cur.execute("SELECT 1")  # Simple query to check the connection
+    cur.fetchone()  # Fetch result to ensure the query works
+    print("Database query executed successfully!")
+
+    # Close cursor and connection
+    cur.close()
+
+    conn.close()
+  except OperationalError as e:
+    print(f"Connection failed: {e}")
+
+def insert_emails(conn, data):
+  insert_query = """
+  INSERT INTO dev_g_s04_gmail.tdev04_gmail_raw (
+    date,
+    id,
+    "internalDate",
+    "labelIds",
+    "sourceEmail",
+    "headerDate",
+    subject,
+    sender,
+    "sizeEstimate",
+    snippet,
+    "threadId"
+  ) VALUES (
+    NOW(),
+    %(id)s,
+    %(internalDate)s,
+    %(labelIds)s,
+    %(sourceEmail)s,
+    %(headerDate)s,
+    %(subject)s,
+    %(sender)s,
+    %(sizeEstimate)s,
+    %(snippet)s,
+    %(threadId)s
+  );
+  """
+
+  with conn.cursor() as cur:
+    execute_batch(cur, insert_query, data)
+    conn.commit()
+
 
 def main():
   """Shows basic usage of the Gmail API.
@@ -92,14 +154,39 @@ def main():
 
   test_ids = get_messageid_threadid(creds)
   # To get total message
-  # print(len(test_ids))
+  print("\nTotal message: ", len(test_ids))
 
   # To test 5 message only
-  # test_ids_5 = test_ids[:5]
+  # test_ids_5 = test_ids[0:2]
   # print(test_ids_5)
 
   new_data = [format_data(id[0], creds) for id in test_ids]
-  pprint(new_data)
+  # pprint(new_data)
+
+  # postgresql db connection
+  check_connection()
+
+  try:
+    conn = psycopg2.connect(
+      database = "dev_g_db04", 
+      user = "superuser_dev", 
+      host = "192.168.68.53", 
+      password = "Capo36296", 
+      port = 5432
+    )
+    
+    # Insert data into the emails table and automatically add the current timestamp
+    insert_emails(conn, new_data)
+    
+    print("Data inserted successfully with current timestamps!")
+    
+  except psycopg2.DatabaseError as error:
+    print(f"Error: {error}")
+    
+  finally:
+    if conn:
+      conn.close()
+
 
   # try:
   #   # Call the Gmail API
